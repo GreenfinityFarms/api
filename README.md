@@ -28,4 +28,39 @@ Note: You'll need to have postgres running locally, see the [database] repo for
 more instructions.
 
 
+## Simplistic diagram
+
+1. API receives an HTTP PUT request from client
+2. Server does two things after authenticating:
+  - Publishes an event with that value to all subscribed clients
+  - Pushes the value TimescaleDB
+3. The dashboard receives published event and updates the view
+4. Historical data is displayed by asking API for a view from the database
+
+
+```
+┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐         ┌────────────────────────┐           
+       API Server       ─────────▶│   Client (Dashboard)   │           
+│                       │         └────────────────────────┘           
+ ┌─────────────────────┐                                               
+││    WebSocket API    ││◀───┐                                         
+ └─────────────────────┘     │                                         
+│                       │    │     ┌──────────────────────────────────┐
+ ─ ─ ─ ─ ─ ─ ─▲─ ─ ─ ─ ─     └─────│    Client/Server (BeagleBone)    │
+            │ │                    └───────▲──────────────────▲───────┘
+            │ │                            │                  │        
+            │ │                            │                  │        
+            │ │                            │                  │        
+            │ │                      ┌───────────┐      ┌───────────┐  
+            │ │                      │ pH Sensor │      │Temperature│  
+            │ │                      └───────────┘      └───────────┘  
+            │ │                                                        
+  ┌─────────▼─┴───────┐                                                
+  │Timeseries Database│                                                
+  │                   │                                                
+  └───────────────────┘                                                
+
+```
+
+
 [database]: https://github.com/GreenfinityFarms/database
