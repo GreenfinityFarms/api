@@ -17,10 +17,11 @@ for more information on allowed values in sender/receivers.
 
 ```json
 {
-  "DB_HOST": "127.0.0.1",
-  "DB_PORT": 5432,
-  "DB_USER": "postgres",
-  "DB_PASS": ""
+  "PGHOST": "127.0.0.1",
+  "PGPORT": 5432,
+  "PGUSER": "postgres",
+  "PGPASSWORD": "",
+  "PGDATABASE": "tutorial"
 }
 ```
 
