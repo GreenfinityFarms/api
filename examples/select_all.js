@@ -11,7 +11,7 @@ const {
 // 'pg' will use the environent variables from process.env by default
 const pool = new Pool()
 
-const selectAllFromConditions = pool.query('SELECT * FROM conditions', (err, res) => {
+pool.query('SELECT * FROM conditions', (err, res) => {
   console.log(err, res)
   pool.end()
 })
