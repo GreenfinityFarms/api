@@ -63,5 +63,52 @@ more instructions.
 
 ```
 
+## Roadmap
+
+#### Phase 1
+- [ ] A new sensor can be registered
+- [ ] JSON records can be received over HTTP
+- [ ] Messages are pushed to Postgres/Timescale
+- [ ] Messages can be retrieved from database by sensor/owner
+- [ ] Historical data can be retrieved for a particular sensor
+
+#### Phase 2
+- [ ] Users of the web/native client can view graphs of historical data
+
+#### Phase 3
+- [ ] Sensors/Clients/MC's can connect securely over a websocket
+- [ ] Clients can subscribe to particular sensors and receive live updates
+- [ ] Users of the web/native client can view graphs of live-updating data
+
+#### Phase 4
+- [ ] Create a GraphQL API endpoint
+
+#### Phase 5
+- [ ] Add notifications / alerts
+
+
+## Data Model
+
+```
+Client {
+  id
+  name
+  lat
+  lon
+}
+
+Sensor {
+  id
+  owner (id in Client)
+  type ['temp' | 'humidity' | 'pH' | '']
+}
+
+Record {
+  sensor_id (id in Sensor)
+  time
+  value
+}
+```
+
 
 [database]: https://github.com/GreenfinityFarms/database
