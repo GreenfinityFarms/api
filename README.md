@@ -11,9 +11,17 @@ libraries are:
 See Nes' [protocol documentation](https://github.com/hapijs/nes/blob/master/PROTOCOL.md)
 for more information on allowed values in sender/receivers.
 
+
+### Current TODO's
+
+- [ ] Add payload validation
+- [ ] Add error logging
+- [ ] Add query sanitization
+
+
 ## Development instructions
 
-1. Create a file called `env.json` and populate it with your database credentials:
+1. Create a file called `env.json` and populate it with your database credentials, for example:
 
 ```json
 {
@@ -27,6 +35,13 @@ for more information on allowed values in sender/receivers.
 
 Note: You'll need to have postgres running locally, see the [database] repo for
 more instructions.
+
+```bash
+yarn global add nodemon         # install nodemon, optional
+yarn [npm install]              # install dependencies
+yarn dev                        # runs nodemon (process monitor)
+[yarn start]                    # start server (without nodemon)
+```
 
 
 ## Simplistic diagram

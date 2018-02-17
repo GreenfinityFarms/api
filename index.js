@@ -6,12 +6,34 @@ const server = new Hapi.Server({ port: 3000, host: 'localhost' });
 
 const start = async () => {
 
-  await server.register(Nes);
+  // Register Middlewares //
+  await server.register([
+    {
+      plugin: Nes
+    },
+    {
+      plugin: require('good'),
+      options: {
+        ops: {
+          interval: 1000
+        },
+        reporters: {
+          myConsoleReporter: [{
+              module: 'good-squeeze',
+              name: 'Squeeze',
+              args: [{ log: '*', response: '*' }]
+          }, {
+              module: 'good-console'
+          }, 'stdout']
+        }
+      }
+    }
+  ]);
 
-  // Set up each route
+  // Setup routes //
   Routes.forEach( route => server.route(route) );
 
-  // Start the server
+  // Start server //
   try {
     await server.start();
     console.log(`Server running at: ${server.info.uri}`);
