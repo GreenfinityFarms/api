@@ -17,6 +17,8 @@ for more information on allowed values in sender/receivers.
 - [ ] Add payload validation
 - [ ] Add error logging
 - [ ] Add query sanitization
+- [ ] Handle opening and closing connection pool
+- [ ] Add a load balancer
 
 
 ## Development instructions
